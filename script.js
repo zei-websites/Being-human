@@ -1,21 +1,23 @@
 /* =========================================================
    Being Human Kids Wear
-   1) Edit SHOP below: phone, email, address, hours, map, social links.
+   1) Edit SHOP below: phones, WhatsApp, email, address, hours, links.
       It updates every place on the page automatically.
    ========================================================= */
 const SHOP = {
-  phone: "+91 00000 00000",
-  email: "hello@yourshop.com",
-  address: "Shop No. __, Street Name, Landmark, City, State - PIN Code",
+  phone1: "+91 80779 06616",
+  phone2: "+91 74177 77107",
+  whatsapp: "918077906616",   // WhatsApp number with country code, no + or spaces
+  whatsappMsg: "Hi, I would like to know more about Being Human Kids Wear.",
+  email: "beinghumankidsstore@gmail.com",
+  address: "Biddiwara Bazaar, Khatauli",
   hours: "10:00 AM - 9:00 PM",
-  // Google Maps: type the shop address / name here (used for the map and directions)
-  mapQuery: "Being Human Kids Wear",
-  // Optional: paste the src="..." link from Google Maps > Share > Embed a map.
-  // If filled, it overrides mapQuery for the embedded map.
-  mapEmbedSrc: "",
-  instagram: "https://www.instagram.com/",
-  facebook: "https://www.facebook.com/"
+  directions: "https://maps.app.goo.gl/LHQA8Mj2EXviEQHg9",
+  instagram: "https://www.instagram.com/beinghumankidsstore?srtk=MW1na3l3dnM5OHFyMA==",
+  facebook: "https://www.facebook.com/"   // TODO: replace with the shop's Facebook page link
 };
+// The map itself is the <iframe> in index.html (Google Maps > Share > Embed a map).
+
+const digits = n => n.replace(/[^\d+]/g, "");
 
 /* ---------- fill text + links from SHOP ---------- */
 document.querySelectorAll("[data-shop]").forEach(el => {
@@ -24,9 +26,11 @@ document.querySelectorAll("[data-shop]").forEach(el => {
 });
 
 const hrefs = {
-  tel: "tel:" + SHOP.phone.replace(/[^\d+]/g, ""),
+  tel1: "tel:" + digits(SHOP.phone1),
+  tel2: "tel:" + digits(SHOP.phone2),
   mailto: "mailto:" + SHOP.email,
-  directions: "https://www.google.com/maps/dir/?api=1&destination=" + encodeURIComponent(SHOP.mapQuery),
+  whatsapp: "https://wa.me/" + digits(SHOP.whatsapp).replace("+", "") + "?text=" + encodeURIComponent(SHOP.whatsappMsg),
+  directions: SHOP.directions,
   instagram: SHOP.instagram,
   facebook: SHOP.facebook
 };
@@ -34,13 +38,6 @@ document.querySelectorAll("[data-shop-href]").forEach(el => {
   const h = hrefs[el.dataset.shopHref];
   if (h) el.setAttribute("href", h);
 });
-
-/* ---------- Google map ---------- */
-const mapFrame = document.getElementById("map-frame");
-if (mapFrame) {
-  mapFrame.src = SHOP.mapEmbedSrc ||
-    "https://www.google.com/maps?q=" + encodeURIComponent(SHOP.mapQuery) + "&output=embed";
-}
 
 /* ---------- image slots: hide placeholder when the image loads ---------- */
 document.querySelectorAll(".photo img").forEach(img => {
