@@ -77,7 +77,9 @@ button { font: inherit; color: inherit; }
 .nav__links { display: flex; gap: clamp(1.25rem, 3vw, 2.5rem); margin-inline: auto; }
 .nav__links a { font-size: 0.875rem; color: var(--muted); padding: 0.4rem 0; transition: color .15s ease; }
 .nav__links a:hover, .nav__links a[aria-current="true"] { color: var(--black); font-weight: 600; }
-.nav__cta { margin-right: 0.15rem; }
+.nav__wa { display: grid; place-items: center; flex: none; width: 2.75rem; height: 2.75rem; border-radius: 50%; background: var(--black); color: var(--white); transition: transform .15s ease; }
+.nav__wa:hover { transform: translateY(-0.125rem) scale(1.06); }
+.nav__wa svg { width: 1.5rem; height: 1.5rem; }
 
 .nav__toggle { display: none; width: 2.75rem; height: 2.75rem; background: none; border: 0; cursor: pointer; padding: 0; place-content: center; gap: 0.3125rem; }
 .nav__toggle span { display: block; width: 1.5rem; height: 0.15625rem; background: var(--black); border-radius: 0.1rem; transition: transform .2s ease, opacity .2s ease; }
@@ -204,7 +206,7 @@ button { font: inherit; color: inherit; }
   .nav__links.is-open { display: flex; }
   .nav__links a { display: block; padding: 0.85rem 0; font-size: 1rem; }
   .nav__links li + li { border-top: 0.0625rem solid var(--gray-2); }
-  .nav__cta { margin-left: auto; min-height: 2.5rem; padding-inline: 1.25rem; font-size: 0.8125rem; }
+  .nav__wa { margin-left: auto; }
   .nav__toggle { display: grid; }
 }
 
@@ -251,7 +253,6 @@ button { font: inherit; color: inherit; }
   .hero__actions .btn { width: 100%; }
   .brand__text strong { font-size: 0.8125rem; }
   .brand__logo { width: 2.25rem; height: 2.25rem; }
-  .nav__cta { padding-inline: 0.9rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
